@@ -1,43 +1,45 @@
-# A Simple Example of How to Transform a Web Application Into a Progressive Web App
+# One client - two applications (Progressive Web App)
 
----
+The purpose of this document is to demonstrate a simple approach for transforming an ordinary web application into a Progressive Web App (PWA), and how the content of the application can be separated depending on whether the user is accessing it through a browser or via the installed app.
 
-The purpose of this document is to demonstrate a simple and practical approach for transforming an ordinary web application into a Progressive Web App (PWA), and how the content of the application can be separated depending on whether the user is accessing it through a browser or via the installed app.
+This report does not aim to describe the inner workings of PWAs, best practices, caching strategies, offline behavior, or any technical implementation details.
 
-This report does not aim to describe the inner workings of PWAs, recommended best practices, caching strategies, offline behavior, or any technical implementation details.
+Instead, the focus is  on illustrating how a single client can provide two different user experiences:
 
-Instead, the focus is  on illustrating how a single client can act as two different user experiences:
+- a regular website experience
+- app-like experience
 
-- a regular webbsite experience
--  app-like experience
-
-This sample will create the PWA using the popular frontend library [React](https://react.dev/)
+This sample will create a **minimal** PWA using the popular frontend library [React](https://react.dev/)
 
 Accessed via the browser:
-![[Pasted image 20251121110001.png]]
+
+![web](public/web.png)
 
 Accessed via the installed App:
-![[Pasted image 20251121110044.png]]
 
----
+![app](public/app.png)
+
+
 ## What Is a PWA?
 
 A PWA (Progressive Web App) is essentially a regular website that can also function like a mobile application.
 
-It can be installed on a mobile device, launch in its own window, and offer an app-like interface and experience.
+It can be installed on a mobile device, launched in its own window, and offer an app-like interface and experience.
 For an overview of PWA fundamentals, general requirements, and recommended practices, refer to:
 
 MDN – Progressive Web Apps Guide
 
 https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps
 
----
+
+
 ## PWA requirement
 
-The only requirement to make your webbsite installable as an app, is a manifest.json file.
+The only requirement to make your website installable as a app, is a manifest.json file.
 This file acts like a configuration file for how the application should look and what routes / functionality should be included. 
 
 You then add a link in your index.html file as below:
+
 `<link rel="manifest" href="manifest.json">`
 
 ....and thats it! If you're on chrome, you now have an installable webb-app!
@@ -61,6 +63,12 @@ You then add a link in your index.html file as below:
 }
 ```
 
+The following manifest members are required to specify:
+- name or shortname
+- icons
+- start url
+- display and /or display_override
+
 ### Browser support
 
 Support for PWA installation promotion from the web varies by browser and by platform.
@@ -79,15 +87,11 @@ On mobile:
 
 source: https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#browser_support
 
----
-### Separating Content Between Web Mode and App Mode
+## Implement the PWA
 
 A central idea in this sample is to demonstrate how one and the same client can present different views depending on how it is being accessed. A modern web application can identify whether it is running inside a standard browser tab or as an installed Progressive Web App. Based on this information, it can adapt its interface and selectively expose functionality that is relevant only in one of the contexts.
 
 This sample will create the PWA using the popular frontend library [React](https://react.dev/)
-
----
-## Implement the PWA
 
 **Requirements for you to be able to follow along**
 - You need node.js installed, if not installed head to node and follow the instructions. [Install Node Instructions](https://nodejs.org/en)
@@ -98,14 +102,15 @@ This sample will create the PWA using the popular frontend library [React](https
 2. cd into pwa-sample using `cd pwa-sample`
 3. run `npm run dev`
 
-You should now how the default webbsite experience, it's not much, just a friendly title!
+Now open the chrome browser and go to `localhost:5173`- you should now get a message saying it runs as a default website.
+
 ![Web](public/web.png)
 
-Now if you haven't already, open the webbsite using the Chrome browser.
 In the URL window - you should see this icon (computer):
+
 ![Install](public/install.png)
 
-This tells you that you can install the webbsite as an application, click install.
+This tells you that you can install the website as an application, click install.
 
 ![Confirm](public/confirm.png)
 
@@ -114,20 +119,22 @@ You should now have it installed and act as an app, notice that the URL part of 
 ![app](public/app.png)
 
 You can also see that the app is installed as an app
+
 ![app.app](public/app.app.png)
 
 It can also be docked (MacOS)
+
 ![dock](public/dock.png)
 
-To uninstall the App, simple open the app and press the 3 dots in the right corner, then press "uninstall"
+To uninstall the App, simply open the app and press the 3 dots in the right corner, then press "uninstall"
 
 ![uninstall](public/uninstall.png)
 
----
-### Wrap-up
+
+## Wrap-up
 
 Ok - so we just saw an example of 1 client showing two different messages (components). How is this done?
-In this example we used React framework to create the logic for rendereing the correct component.
+In this example we used React framework to create the logic for render the correct component.
 
 ```js
 /**
@@ -174,3 +181,10 @@ function App() {
   );
 }
 ```
+
+**Summary:**
+1. Create manifest.json
+    - Add [required](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#required_manifest_members) manifest members
+2. Add link to manifest from index.html
+3. Create logic to render the right component / content
+4. Stay awesome
