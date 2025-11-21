@@ -100,19 +100,27 @@ This sample will create the PWA using the popular frontend library [React](https
 
 1. Clone the repo 
 
-```git clone https://github.com/KristofferOhlund/pwa-sample```
+```
+git clone https://github.com/KristofferOhlund/pwa-sample
+```
 
 2. cd into pwa-sample
 
-```cd pwa-sample```
+```
+cd pwa-sample
+```
 
 3. Install dependencies
 
-```npm install```
+```
+npm install
+```
 
 4. Start dev server
 
-```npm run dev```
+```
+npm run dev
+```
 
 Now open the chrome browser and go to `localhost:5173`- you should now get a message saying it runs as a default website.
 
