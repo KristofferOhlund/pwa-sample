@@ -98,9 +98,21 @@ This sample will create the PWA using the popular frontend library [React](https
 - Chrome browser
 - Internet connection (obviously)
 
-1. Clone the repo using `git clone <repo>`
-2. cd into pwa-sample using `cd pwa-sample`
-3. run `npm run dev`
+1. Clone the repo 
+
+```git clone https://github.com/KristofferOhlund/pwa-sample```
+
+2. cd into pwa-sample
+
+```cd pwa-sample```
+
+3. Install dependencies
+
+```npm install```
+
+4. Start dev server
+
+```npm run dev```
 
 Now open the chrome browser and go to `localhost:5173`- you should now get a message saying it runs as a default website.
 
@@ -187,4 +199,5 @@ function App() {
     - Add [required](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#required_manifest_members) manifest members
 2. Add link to manifest from index.html
 3. Create logic to render the right component / content
-4. Stay awesome
+
+---
